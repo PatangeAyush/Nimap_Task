@@ -1,0 +1,98 @@
+﻿@model CategoryDTO
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Category</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: black;
+            text-align: center;
+        }
+
+        .form-container {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: lightgray;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .form-container input, .form-container select {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid lightgray;
+                border-radius: 5px;
+            }
+
+            .form-container button {
+                padding: 12px 20px;
+                background-color: green;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+                .form-container button:hover {
+                    background-color: #45a049;
+                }
+
+        .back-btn {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+            .back-btn:hover {
+                background-color: #0b7dda;
+            }
+    </style>
+</head>
+<body>
+
+    <h2>Update Category</h2>
+
+    <div class="form-container">
+        @using (Html.BeginForm("UpdateCategory", "Category", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(m => m.CategoryID)
+
+            <div>
+                <label for="CategoryName">Category Name</label>
+                @Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control" })
+            </div>
+
+            <div>
+                <button type="submit">Update</button>
+            </div>
+        }
+    </div>
+
+</body>
+</html>
+
+

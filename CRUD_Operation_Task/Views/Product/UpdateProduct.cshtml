@@ -1,0 +1,108 @@
+﻿@model ProductDTO
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightgray;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: black;
+            text-align: center;
+        }
+
+        .form-container {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            padding: 12px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-container button:hover {
+                    background-color: green;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: aqua;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+                background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Update Product</h2>
+
+    <div class="form-container">
+        @using (Html.BeginForm("UpdateProduct", "Product", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(m => m.ProductID)
+
+            <div>
+                <label for="ProductName">Product Name</label>
+                @Html.TextBoxFor(m => m.ProductName, new { @class = "form-control" })
+            </div>
+
+            <div>
+                <label for="CategoryID">Category</label>
+                <select name="CategoryID" class="form-control">
+                    <option value="">--Select Category--</option>
+                    @foreach (var category in ViewBag.Dropdown as SelectList)
+                    {
+                        <option value="@category.Value">@category.Text</option>
+                    }
+                </select>
+            </div>
+
+            <div>
+                <button type="submit">Update Product</button>
+            </div>
+        }
+    </div>
+
+</body>
+</html>
+

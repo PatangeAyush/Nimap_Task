@@ -1,0 +1,133 @@
+﻿@model List<CategoryDTO>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category List</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: black;
+            text-align: center;
+        }
+
+       
+        .btn {
+            padding: 8px 16px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background-color: green;
+        }
+
+        .btn-secondary {
+            background-color: blue;
+        }
+
+        .btn-danger {
+            background-color: red;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover td {
+            background-color: #f1f1f1;
+        }
+
+        td a {
+            padding: 6px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+        }
+
+            td a.update {
+                background-color: #2196F3;
+            }
+
+            td a.delete {
+                background-color: #f44336;
+            }
+
+            td a:hover {
+                opacity: 0.8;
+            }
+    </style>
+</head>
+<body>
+
+    <h2>Categories List</h2>
+
+    <div style="text-align: center;">
+        <a href="/Category/AddCategory" class="btn btn-secondary">Add Category</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Category ID</th>
+                <th>Category Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.CategoryID</td>
+                    <td>@product.CategoryName</td>
+                    <td>
+                        <a href="@Url.Action("UpdateCategory", "Category", new { id = product.CategoryID })" class="update">Update</a>
+                        <a href="@Url.Action("DeleteCategory", "Category", new { id = product.CategoryID })" class="delete">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>
